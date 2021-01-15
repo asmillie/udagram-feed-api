@@ -1,9 +1,10 @@
 import AWS = require('aws-sdk');
 
 const Bucket = process.env.AWS_S3_MEDIA_BUCKET;
+const profile = `${process.env.AWS_PROFILE}`;
 
 // Configure AWS
-const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+const credentials = new AWS.SharedIniFileCredentials({profile});
 AWS.config.credentials = credentials;
 
 export const s3 = new AWS.S3({
