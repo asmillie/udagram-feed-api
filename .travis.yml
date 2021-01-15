@@ -7,7 +7,7 @@ services:
 
 script:
   - docker --version
-  - docker build -t udagram-feed-api
+  - docker build --rm -t udagram-feed-api
   - docker tag udagram-feed-api elsrickle/udagram-feed-api:latest
 
 after_success:
