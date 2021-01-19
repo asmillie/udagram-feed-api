@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 12.18.3
+  
+branches:
+  only:
+  - main
+
+services:
+  npm
+  docker
+
+script:
+  - npm run build
+  - docker --version
+  - docker build -t udagram-feed-api .
+  - docker tag udagram-feed-api elsrickle/udagram-feed-api:latest
+
+after_success:
+  - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push elsrickle/udagram-feed-api
