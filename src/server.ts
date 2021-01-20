@@ -42,6 +42,10 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
     res.send( '/api/v0/' );
   } );
 
+  // Health Check Endpoint
+  app.get('/health', (req, res) => {
+    res.status(200).send('Server Running');
+  });
 
   // Start the Server
   app.listen( port, () => {
