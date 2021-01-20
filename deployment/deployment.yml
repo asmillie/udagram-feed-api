@@ -5,7 +5,7 @@ metadata:
   labels:
     app: udagram-feed-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: udagram-feed-api
@@ -19,3 +19,59 @@ spec:
         image: elsrickle/udagram-feed-api
         ports:
         - containerPort: 8080
+        env:
+          - name: CORS_ALLOWED_URL_1
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: corsAllowedUrl1
+          - name: CORS_ALLOWED_URL_2
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: corsAllowedUrl2
+          - name: SERVER_PORT
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: serverPort
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: pgUsername
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: pgPassword
+          - name: POSTGRES_HOST
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: pgHost
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: pgDb
+          - name: AWS_S3_MEDIA_BUCKET
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: awsS3MediaBucket
+          - name: AWS_REGION
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: awsRegion
+          - name: AWS_PROFILE
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: awsProfile
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: jwtSecret
